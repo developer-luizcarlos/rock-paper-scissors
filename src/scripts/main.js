@@ -15,14 +15,40 @@ function handleChoiceButtonClick(event) {
   try {
     const userChoice = event.target.value;
     const computerChoice = getRandomComputerChoice();
-
     const winner = getWinner(userChoice, computerChoice);
+
+    displayGameResult(userChoice, computerChoice, winner);
   } catch (error) {
     console.error(error.message);
   }
 }
 
-getWinner("rock", "paper");
+/**
+ *
+ * @param {"rock" | "paper" | "scissors"} userChoice
+ * @param {"rock" | "paper" | "scissors"} computerChoice
+ * @param {"user" | "computer" | "draw"} result
+ */
+function displayGameResult(userChoice, computerChoice, result) {
+  resultContainer.innerText = "";
+
+  const userChoiceSpan = `
+    <span><strong>User choice:</strong> ${userChoice}</span>
+  `;
+  const computerChoiceSpan = `
+    <span><strong>Computer choice:</strong> ${computerChoice}</span>
+  `;
+  const resultSpan = `
+    <span><strong>Result:</strong> ${result}</span>
+  `;
+
+  resultContainer.style.display = "flex";
+  resultContainer.style.gap = "25px";
+
+  resultContainer.innerHTML += userChoiceSpan;
+  resultContainer.innerHTML += computerChoiceSpan;
+  resultContainer.innerHTML += resultSpan;
+}
 
 /**
  *
